@@ -1,0 +1,25 @@
+<% flash.each do |key, value| %>
+  <%= content_tag :div, value.html_safe, class: "alert alert-warning", role: "alert" %>
+<% end %>
+
+<div class="jumbotron">
+  
+  <h4>Spieltag wählen:</h4>
+
+  <div class="btn-group btn-group-justified">
+    <% (1..17).each do |n| %>
+      <%= link_to n, edit_tipp_path(n), class:"btn btn-default", type:"button", id: "matchday#{n}" %>
+    <% end %>
+  </div>
+  <div class="btn-group btn-group-justified">
+    <% (18..34).each do |n| %>
+      <%= link_to n, edit_tipp_path(n), class:"btn btn-default", type:"button" ,id: "matchday#{n}" %>
+    <% end %>
+  </div>
+
+  <%= render 'form' %>
+
+</div>
+
+<%= link_to 'Show', @tipp %> |
+<%= link_to 'Back', tipps_path %>

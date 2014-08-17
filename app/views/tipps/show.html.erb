@@ -1,0 +1,11 @@
+<% @matches.each do |match| %>
+  <p>
+    <strong><%= match.match_time %></strong>
+    <%= match.home_team %> : <%= match.away_team %>
+
+  </p>
+<% end %>
+
+
+<p id="notice"><%= notice %></p>
+

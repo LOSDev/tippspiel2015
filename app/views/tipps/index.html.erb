@@ -1,0 +1,31 @@
+<h1>Listing tipps</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Result</th>
+      <th>User</th>
+      <th>Match</th>
+      <th>Points</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tipps.each do |tipp| %>
+      <tr>
+        <td><%= tipp.home_goals %></td>
+        <td><%= tipp.user %></td>
+        <td><%= tipp.match %></td>
+        <td><%= tipp.points %></td>
+        <td><%= link_to 'Show', tipp %></td>
+        <td><%= link_to 'Edit', edit_tipp_path(tipp) %></td>
+        <td><%= link_to 'Destroy', tipp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tipp', new_tipp_path %>

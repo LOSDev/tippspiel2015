@@ -1,0 +1,41 @@
+
+<%= form_tag tipps_path do %>
+
+
+    <div class="header"><h3>Tippen Sie den <%= @matches.first.matchday %>. Spieltag</h3></div>
+    <%= hidden_field_tag "matchday", @matchday, { :id => "matchday" } %>
+    <table class="table">
+      <thead>
+          
+      </thead>
+      <tbody>
+        <% @matches.each do |match| %>
+          <% tipp = Tipp.find_by_match_id(match.id) || Tipp.new %>
+          <%= fields_for "tipps[]", tipp, index: nil do |f| %>
+            <tr>
+              <%= f.hidden_field :match_id, :value => match.id %>
+              <td align="left" width="20%">
+                <% day = match.match_time.strftime("%u")%>
+                <%= @days[day.to_i - 1] + ". " %>
+                <%= match.match_time.in_time_zone("CET").strftime("%d.%m, %H:%M")  %>
+              </td>
+              <td align="right" width="30%"><%= match.home_team %></td>
+              <td align="right" width="5%"> <%= f.text_field(:home_goals, class: "form-control input-sm") %></td>
+              <td align="center" width="1%">:</td>
+              <td align="left" width="5%"><%= f.text_field(:away_goals, class: "form-control input-sm") %></td>
+              <td align="left" width="30%"><%= match.away_team %></td>
+              
+              <% if match.home_goals %>
+                <td align="center" width="10%"><%= match.home_goals %> - <%= match.away_goals %></td>
+              <% else %>
+                <td align="center" width="10%">-</td>
+              <% end %>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  
+<%= submit_tag "Tipps abgeben" , class: "btn btn-primary btn-lg", role: "button" %>
+<% end %>
+
