@@ -28,11 +28,17 @@
         <ul class="nav navbar-nav">
           <li ><a href="/">Home</a></li>
           <li><a href="/regeln">Regeln</a></li>
-          
+          <li><%= link_to "Tippen", tipps_index_path %></li>
         </ul>
         
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Link</a></li>
+          <% if current_user %>
+          <li><%= link_to "Optionen", edit_user_registration_path %></li>
+
+          <li><%= link_to "Ausloggen", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+          <li><%= link_to "Einloggen", new_user_session_path %></li>
+          <% end %>
           
         </ul>
       </div><!-- /.navbar-collapse -->

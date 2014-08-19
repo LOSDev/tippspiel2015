@@ -1,10 +1,16 @@
 class TippsController < ApplicationController
   before_action :set_tipp, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /tipps
   # GET /tipps.json
   def index
-    @tipps = Tipp.all
+    matches = Match.all
+    matches.each do |match|
+      if DateTime.now < match.match_time
+        redirect_to edit_tipp_path(match.matchday)
+        break
+      end
+    end
   end
 
   # GET /tipps/1
@@ -19,7 +25,7 @@ class TippsController < ApplicationController
 
   # GET /tipps/1/edit
   def edit
-    @days = %w(Mo Di Mi Do Fr Sa So)
+    @days = %w(So Mo Di Mi Do Fr Sa)
 
     @matchday = params[:id]
   end
@@ -27,26 +33,30 @@ class TippsController < ApplicationController
   # POST /tipps
   # POST /tipps.json
   def create
-    @formerrors = []
-    tipps = params[:tipps]
-    tipps = tipps.values if tipps.is_a?(Hash)
-    matchday = Match.find(tipps.last["match_id"]).matchday
-    tipps.each do |tipp|
-      match_id = tipp["match_id"]
-      home_goals = tipp["home_goals"]
-      away_goals = tipp["away_goals"]
-      @tipp = Tipp.find_or_initialize_by(match_id: match_id)
-      @tipp.home_goals = home_goals
-      @tipp.away_goals = away_goals
-      @tipp.match_id = tipp["match_id"]
+    if current_user
+      @formerrors = []
+      tipps = params[:tipps]
+      tipps = tipps.values if tipps.is_a?(Hash)
+      matchday = Match.find(tipps.last["match_id"]).matchday
+      tipps.each do |tipp|
+        match_id = tipp["match_id"]
+        home_goals = tipp["home_goals"]
+        away_goals = tipp["away_goals"]
+        @tipp = Tipp.find_or_initialize_by(match_id: match_id, user_id: current_user)
+        @tipp.home_goals = home_goals
+        @tipp.away_goals = away_goals
+        @tipp.user_id = current_user.id
 
-      if home_goals != "" and away_goals != ""
-        @formerrors << @tipp.errors.messages.values unless @tipp.save
+        if check_tipp(tipp)
+          p @tipp
+          @formerrors << @tipp.errors.messages.values unless @tipp.save
+        end
+       
+
       end
-
+      @formerrors = create_ul
+      redirect_to edit_tipp_path(matchday), notice: @formerrors
     end
-    @formerrors = create_ul
-    redirect_to edit_tipp_path(matchday), notice: @formerrors
   end
 
   # PATCH/PUT /tipps/1
@@ -75,6 +85,16 @@ class TippsController < ApplicationController
   end
 
   private
+
+    def check_tipp(tipp)
+      return false if tipp["home_goals"] == "" or tipp["away_goals"] == "" or !tipp["home_goals"] or !tipp["away_goals"]
+      match = Match.find(tipp["match_id"])
+      if DateTime.now > match.match_time
+        @formerrors << "Für das Spiel #{match.home_team} - #{match.away_team} können keine Tipps mehr abgegeben werden."
+        false
+      end
+      true
+    end
 
     def create_ul 
       return if @formerrors.length == 0

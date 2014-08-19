@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $(".btn-group-justified .btn").click("active")
+  $(".btn-group-justified .btn").removeClass("active")
   value = $("#matchday").val()
   
   $("#matchday#{value}").addClass("active")

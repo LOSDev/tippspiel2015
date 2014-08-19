@@ -1,0 +1,7 @@
+<p>Hallo <%= @resource.email %>!</p>
+
+<p>Ihr Accout wurde gesperrt weil Sie sich zu häufig mit einem falschen Passwort einloggen wollten.</p>
+
+<p>Klicken Sie den folgenden Link, um Ihren Account wieder freizugeben:</p>
+
+<p><%= link_to 'Account freigeben', unlock_url(@resource, unlock_token: @token) %></p>

@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   get 'regeln', to: 'static_pages#rules', as: :rules
   get 'home', to: 'static_pages#home', as: :home
 
-  resources :tipps
+  get 'tipps', to: 'tipps#index', as: :tipps_index
+  get 'tipps/:id', to:'tipps#edit', as: :edit_tipp
+  post 'tipps', to:'tipps#create', as: :tipps
+  #resources :tipps
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
