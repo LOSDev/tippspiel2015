@@ -3,6 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
+  $(".has-error").parent('div').addClass("has-error")
+  
   $(".btn-group-justified .btn").removeClass("active")
   value = $("#matchday").val()
   

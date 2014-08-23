@@ -2,20 +2,21 @@
   <%= content_tag :div, value.html_safe, class: "alert alert-warning", role: "alert" %>
 <% end %>
 
-<div class="jumbotron">
-  
+<div class="well">
   <h4>Spieltag wählen:</h4>
 
   <div class="btn-group btn-group-justified">
     <% (1..17).each do |n| %>
-      <%= link_to n, edit_tipp_path(n), class:"btn btn-default", type:"button", id: "matchday#{n}" %>
+      <%= link_to n, edit_tipp_path(n), class: "btn btn-info btn-sm", type:"button", id: "matchday#{n}" %>
     <% end %>
   </div>
   <div class="btn-group btn-group-justified">
     <% (18..34).each do |n| %>
-      <%= link_to n, edit_tipp_path(n), class:"btn btn-default", type:"button" ,id: "matchday#{n}" %>
+      <%= link_to n, edit_tipp_path(n), class: "btn btn-primary btn-sm", type:"button" ,id: "matchday#{n}" %>
     <% end %>
   </div>
+  <br>
+  <div class="header"><h3>Tippen Sie den <%= @matches.first.matchday %>. Spieltag</h3></div>
 
   <%= render 'form' %>
 

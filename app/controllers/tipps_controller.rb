@@ -48,7 +48,7 @@ class TippsController < ApplicationController
         @tipp.user_id = current_user.id
 
         if check_tipp(tipp)
-          p @tipp
+          @tipp
           @formerrors << @tipp.errors.messages.values unless @tipp.save
         end
        
@@ -111,8 +111,8 @@ class TippsController < ApplicationController
       matchday = params[:id].to_i
       lastmatch = matchday * 9
       firstmatch = lastmatch - 8
-      @tipps = Tipp.where("match_id < ? AND match_id > ?", lastmatch, firstmatch)
-
+      @tipps = Tipp.where(user_id: current_user.id).where("match_id <= ? AND match_id >= ?", lastmatch, firstmatch).order(:match_id)
+      @user_id = current_user.id
       @matches = Match.where(["matchday = ?", params[:id]])
     end
 
