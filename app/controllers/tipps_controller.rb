@@ -27,7 +27,6 @@ class TippsController < ApplicationController
   def edit
     @days = %w(So Mo Di Mi Do Fr Sa)
 
-    @matchday = params[:id]
   end
 
   # POST /tipps
@@ -108,12 +107,14 @@ class TippsController < ApplicationController
     end
     # Use callbacks to share common setup or constraints between actions.
     def set_tipp
-      matchday = params[:id].to_i
-      lastmatch = matchday * 9
+      @matchday = params[:id].to_i
+      lastmatch = @matchday * 9
       firstmatch = lastmatch - 8
       @tipps = Tipp.where(user_id: current_user.id).where("match_id <= ? AND match_id >= ?", lastmatch, firstmatch).order(:match_id)
       @user_id = current_user.id
       @matches = Match.where(["matchday = ?", params[:id]])
+      @top10 = User.limit(10).ordered
+      @matchday_top = MatchdayPoint.includes(:user).where(matchday: @matchday).limit(10).ordered
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

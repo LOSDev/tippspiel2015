@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'rankings/index'
+
+  get 'rankings/matchday'
+
   get 'regeln', to: 'static_pages#rules', as: :rules
   get 'home', to: 'static_pages#home', as: :home
 

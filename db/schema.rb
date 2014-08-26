@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819172740) do
+ActiveRecord::Schema.define(version: 20140825153839) do
+
+  create_table "matchday_points", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "matchday"
+    t.integer  "points"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "matchday_points", ["user_id"], name: "index_matchday_points_on_user_id"
 
   create_table "matches", force: true do |t|
     t.string   "home_team"
@@ -54,6 +64,7 @@ ActiveRecord::Schema.define(version: 20140819172740) do
     t.datetime "updated_at"
     t.string   "username"
     t.integer  "points",                 default: 0
+    t.integer  "rank"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

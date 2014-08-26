@@ -8,7 +8,7 @@ namespace :matches do
   end
 end
 def update_matches
-  (1..2).each do |n|
+  (1..34).each do |n|
     p "#{n}. Spieltag"
     url = "http://openligadb-json.heroku.com/api/matchdata_by_group_league_saison?group_order_id=#{n}&league_saison=2014&league_shortcut=bl1"
     open(url) do |f|

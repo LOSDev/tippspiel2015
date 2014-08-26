@@ -23,6 +23,36 @@ namespace :points do
     end
   end
 
+  desc "Ranking Users"
+  task :rank => :users do
+    "Inserting Ranking into database"
+    last_points = nil
+    last_index = nil
+    User.all.ordered.each_with_index do |user, index|
+      if last_points == user.points
+        index = last_index
+      else
+        last_index = index
+        last_points = user.points
+      end
+      user.rank = index + 1
+      user.save
+    end
+  end
+
+  desc "Calculating points per Matchday"
+  task :matchday => :rank do
+    "Calculating points per Matchday"
+    User.all.each do |user|
+      (1..34).each do |n|
+        points = Tipp.joins(:match).where(matches:{matchday: n }).where(user_id: user.id).sum(:points)
+        entry = MatchdayPoint.find_or_create_by(matchday: n, user_id: user.id)
+        entry.points = points
+        entry.save
+      end
+    end
+  end
+
   desc "update matches and points"
   task :update => ["matches:load", :users]
 

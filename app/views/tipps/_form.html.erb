@@ -11,7 +11,7 @@
         
         <th align="left"></th>
         <th style="text-align:center">Ergebnis</th>
-
+        <th>Punkte</th>
     </thead>
     <tbody>
       <% @matches.each do |match| %>
@@ -48,13 +48,22 @@
             <% else %>
               <td align="center">-</td>
             <% end %>
+            <td width="5%" align="center"><div class="label label-default"><%= tipp.points  %></div></td>
           </tr>
         <% end %>
       <% end %>
+      <tr>
+        <td colspan="3">
+          <%= submit_tag "Tipps abgeben" , class: "btn btn-primary btn-lg btn-block", role: "button" if DateTime.now < @matches.last.match_time %>
+        </td>
+        <td colspan="4" align="right">Spieltag-Punktzahl:</td>
+        <td align="center"><div class="label label-default"><%= @tipps.inject(0){|sum,e| sum += e.points if e.points} %></div></td>
+      </tr>
+    
     </tbody>
+
   </table>
 
   
-  <%= submit_tag "Tipps abgeben" , class: "btn btn-primary btn-lg", role: "button" if DateTime.now < @matches.last.match_time %>
 <% end %>
 
