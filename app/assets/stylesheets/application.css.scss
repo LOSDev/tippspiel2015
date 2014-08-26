@@ -13,8 +13,24 @@
  *= require_tree .
  *= require_self
  */
+
+
+
+$navbar-height:                    50px;
+$navbarBackgroundHighlight:       #ffffff;
+$navbar-default-bg:                #5bc0de;
+$navbar-default-border:            #5bc0de;
+
+$navbar-default-color:                      #fff;
+$navbar-default-link-color:                 #fff;
+$navbar-default-link-hover-color:            #428bca;
+$navbar-default-link-hover-bg:           white;
+$navbar-default-link-active-color:       white;
+$navbar-default-link-active-bg:      #428bca;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
 body {
     background-image: url(image_path('rasen.jpg'));
     background-size: cover;

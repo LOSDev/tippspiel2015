@@ -1,0 +1,26 @@
+<div class="col-md-12">
+  <div class="well">
+    <%= render 'nav' %>
+      <br>
+    <div class="panel panel-primary">
+      <div class="panel-heading">Die besten 100</div>
+      <table class="table table-striped">
+        <thead>
+          <th>Platz</th>
+          <th>Name</th>
+          <th>Punkte</th>
+        </thead>
+        <tbody>
+          <% @top100.each do |user| %>
+            <tr class="<%= "alert alert-info" if current_user and current_user.username ==  user.username %>">
+           
+              <td><%= user.rank %>.</td>
+              <td><%= user.username %></td>
+              <td><%= user.points %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

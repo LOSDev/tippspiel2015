@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get 'rankings/index'
-
-  get 'rankings/matchday'
+  get 'rankings/overall/:id', to: 'rankings#overall', as: :rankings_overall_show
+  
+  get 'rankings/matchday/:id', to: 'rankings#matchday', as: :rankings_matchday_show
 
   get 'regeln', to: 'static_pages#rules', as: :rules
   get 'home', to: 'static_pages#home', as: :home
