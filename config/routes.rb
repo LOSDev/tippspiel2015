@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tipp_groups
+
   get 'rankings/overall/:id', to: 'rankings#overall', as: :rankings_overall_show
   
   get 'rankings/matchday/:id', to: 'rankings#matchday', as: :rankings_matchday_show

@@ -202,7 +202,12 @@ de:
         password_confirmation: "Passwort"
         current_password: "Aktuelles Passwort"
         username: "Benutzername"
+      tipp_group: 
+        name: Name
+        password: "Passwort"
+        
     models:
       user: "Benutzer"
+      tipp_group: "Tipp-Gruppe"
     
           

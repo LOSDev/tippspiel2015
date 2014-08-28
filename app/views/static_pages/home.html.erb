@@ -24,7 +24,7 @@
               <td width="25%" align="right"><%= match.home_team %></td>
               <td align="center" width="1%">:</td>  
               <td width="25%" align="left" ><%= match.away_team %></td>
-              <td width="15%" align="center"><%=link_to "Jetzt tippen!", edit_tipp_path(@matchday)  %></td>
+              <td width="15%" align="center"><%=link_to "Jetzt tippen!", edit_tipp_path(@matchday), class: "badge alert-info" %></td>
             </tr>
           <% end %>       
         </tbody>

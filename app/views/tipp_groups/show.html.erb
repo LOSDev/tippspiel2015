@@ -1,0 +1,20 @@
+<div class="col-md-12">
+  <div class="well">
+    <p id="notice"><%= notice %></p>
+    <p>
+      <strong>Gruppenname:</strong>
+      <%= @tipp_group.name %>
+    </p>
+    <p>
+      <strong>Gruppenersteller:</strong>
+      <%= @tipp_group.user.username %>
+    </p>
+
+    <p>
+      <strong>Gruppen-Passwort:</strong>
+      <%= @tipp_group.password %>
+    </p>
+  <%= link_to 'Bearbeiten', edit_tipp_group_path(@tipp_group) %> |
+  <%= link_to 'Zurück', tipp_groups_path %>
+  </div>
+</div>

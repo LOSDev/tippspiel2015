@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140825153839) do
+ActiveRecord::Schema.define(version: 20140828152149) do
 
   create_table "matchday_points", force: true do |t|
     t.integer  "user_id"
@@ -35,6 +35,17 @@ ActiveRecord::Schema.define(version: 20140825153839) do
     t.integer  "home_goals"
     t.integer  "away_goals"
   end
+
+  create_table "tipp_groups", force: true do |t|
+    t.integer  "user_id"
+    t.string   "password"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tipp_groups", ["name"], name: "index_tipp_groups_on_name", unique: true
+  add_index "tipp_groups", ["user_id"], name: "index_tipp_groups_on_user_id"
 
   create_table "tipps", force: true do |t|
     t.integer  "user_id"
