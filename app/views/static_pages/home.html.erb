@@ -1,8 +1,35 @@
-<div class="well col-md-8">
-  <h2>Tippspiel zur Bundesliga-Saison 2014/2015</h2>
-  <p>Tippen Sie mit!<br>
+<div  class="col-md-8">
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading">Tippspiel zur Bundesliga-Saison 2014/2015</div>
+    <div class="panel-body">
+      <p>Fußballexperte? Sie wissen alles besser? Zeigen Sie es. <br>Tippen Sie mit!<br>
+      </p>
+      <p>Einfach registrieren und mittippen und einen von vielen tollen Preisen gewinnen!</p>
+    </div>
+  </div>
 
-Sie wissen alles besser? Zeigen Sie es. Einfach einloggen und mittippen und einen von vielen tollen Preisen gewinnen!
-</p>
+  <div class="panel panel-primary">
+    <div class="panel-heading">Die nächsten Spiele:</div>
+      <table class="table table-striped">
+        <thead>
+            
+        </thead>
+        <tbody>
+          <% @matches.each do |match| %>
+            <tr>
+              <td width="15%" align="center" >
+                <%= match.match_time.in_time_zone("CET").strftime("%d.%m, %H:%M")  %>
+              </td>
+              <td width="25%" align="right"><%= match.home_team %></td>
+              <td align="center" width="1%">:</td>  
+              <td width="25%" align="left" ><%= match.away_team %></td>
+              <td width="15%" align="center"><%=link_to "Jetzt tippen!", edit_tipp_path(@matchday)  %></td>
+            </tr>
+          <% end %>       
+        </tbody>
+      </table>  
+    </div>
 </div>
+
 <%= render 'static_pages/login_form' %>

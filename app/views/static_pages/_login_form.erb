@@ -1,5 +1,5 @@
 <% unless current_user %>
-  <div class="well col-md-4">
+  <div class="col-md-4">
     <h2 class="h2">Einloggen</h2>
     <%= form_for(:user, :url => session_path(:user), html: { role: "form"}) do |f| %>
       <div class="form-group"><%= f.label :email, "E-Mail-Adresse" %><br />
@@ -17,5 +17,14 @@
   </div>
 
 <% else %>
-  <%= current_user.inspect  %>
+  <div class="col-md-4">
+    <div class="panel panel-primary">
+    <div class="panel-heading">Hallo <%= current_user.username %></div>
+    <div class="panel-body">
+      <p>Sie liegen im Moment auf dem <%= current_user.rank %>. Platz der Gesamtwertung.</p>
+      <p>Sie haben bisher <%= current_user.points %> Punkte erreicht.</p>
+      <button class="btn btn-primary btn-lg btn-block" role="button"><%= link_to "Jetzt Tippen!"%></button>
+    </div>
+  </div>
+  </div>
 <% end %>
