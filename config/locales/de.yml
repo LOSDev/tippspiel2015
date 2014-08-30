@@ -205,6 +205,8 @@ de:
       tipp_group: 
         name: Name
         password: "Passwort"
+      group_member:
+        user_id: Benutzer
         
     models:
       user: "Benutzer"

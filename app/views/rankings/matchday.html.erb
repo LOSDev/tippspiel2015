@@ -27,7 +27,7 @@
         </thead>
         <tbody>
           <% @top100.each_with_index do |tipp, index| %>
-            <tr class="<%= "alert alert-info" if current_user and current_user.username ==  tipp.user.username %>">
+            <tr class="<%= "info" if current_user and current_user.username ==  tipp.user.username %>">
               <td><%= index + 1 %>.</td>
               <td><%= tipp.user.username %></td>
               <td><%= tipp.points %></td>

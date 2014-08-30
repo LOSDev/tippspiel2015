@@ -1,33 +1,32 @@
-<div class="col-md-12">
-<div class="well">
-<h1>Ihre Tipp-Gruppen</h1>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Gruppenname</th>
-      <th>Benutzername</th>
-      <th>Passwort</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @tipp_groups.each do |tipp_group| %>
-      <tr>
-        <td><%= tipp_group.name %></td>
-        <td><%= tipp_group.user %></td>
-        <td><%= tipp_group.password %></td>
-        <td><%= link_to 'Show', tipp_group %></td>
-        <td><%= link_to 'Edit', edit_tipp_group_path(tipp_group) %></td>
-        <td><%= link_to 'Destroy', tipp_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="col-md-8">
+  <div class="well">
+    <% if flash[:notice] %>
+      <p class="alert alert-info"><%= notice %></p>
     <% end %>
-  </tbody>
-</table>
+    <h3>Alle Tipp-Gruppen</h3>
 
-<br>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Gruppenname</th>
+          <th>Gruppengründer</th>
+          <th></th>
+        </tr>
+      </thead>
 
-<%= link_to 'Neue Tipp-Gruppe erstellen', new_tipp_group_path, class: "btn btn-primary" %>
-</div>
+      <tbody>
+        <% @tipp_groups.each do |tipp_group| %>
+          <tr>
+            <td><%= tipp_group.name %></td>
+            <td><%= tipp_group.user.username %></td>
+            <td><%= link_to 'Details anzeigen', tipp_group, class: "btn btn-primary btn-sm pull-right" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <br>
+
+    <%= link_to 'Neue Tipp-Gruppe erstellen', new_tipp_group_path, class: "btn btn-primary" %>
+  </div>
 </div>

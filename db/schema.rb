@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140828152149) do
+ActiveRecord::Schema.define(version: 20140830092609) do
+
+  create_table "group_members", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "tipp_group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "group_members", ["tipp_group_id"], name: "index_group_members_on_tipp_group_id"
+  add_index "group_members", ["user_id"], name: "index_group_members_on_user_id"
 
   create_table "matchday_points", force: true do |t|
     t.integer  "user_id"

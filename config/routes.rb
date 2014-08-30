@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  resources :tipp_groups
-
+  
+  resources :tipp_groups do
+    member do
+     post 'create_member'
+     delete 'delete_member'
+    end
+  end
   get 'rankings/overall/:id', to: 'rankings#overall', as: :rankings_overall_show
   
   get 'rankings/matchday/:id', to: 'rankings#matchday', as: :rankings_matchday_show
