@@ -19,7 +19,8 @@
           <tr>
             <td><%= tipp_group.name %></td>
             <td><%= tipp_group.user.username %></td>
-            <td><%= link_to 'Details anzeigen', tipp_group, class: "btn btn-primary btn-sm pull-right" %></td>
+
+            <td><%= link_to 'Mitglied werden', tipp_group, class: "btn btn-primary btn-sm active pull-right" %></td>
           </tr>
         <% end %>
       </tbody>
@@ -27,6 +28,40 @@
 
     <br>
 
-    <%= link_to 'Neue Tipp-Gruppe erstellen', new_tipp_group_path, class: "btn btn-primary" %>
+    <%= link_to 'Neue Tipp-Gruppe erstellen', new_tipp_group_path, class: "btn btn-primary active" %>
+  </div>
+</div>
+<div class="col-md-4">
+  <div class="panel panel-primary">
+    <div class="panel-heading"><b>Ihre Gruppen:</b></div>
+    <table class="table">
+      
+      <tbody>
+        <% @founded_groups.each do |group| %>
+          <tr>
+            <td><%= link_to group.name, group, class: "btn btn-primary btn-sm active" %></td>
+            <td><%= link_to 'Rangliste', rankings_tipp_group_show_path(group), class: "btn btn-info btn-sm active pull-right" %></td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div><div class="col-md-4">
+  <div class="panel panel-primary">
+    <div class="panel-heading"><b>Mitglied von:</b></div>
+    <table class="table">
+      
+      <tbody>
+        <% @member_groups.each do |group| %>
+          <tr>
+            <td><%= link_to group.tipp_group.name, group.tipp_group, class: "btn btn-primary btn-sm active" %></td>
+            
+            <td><%= link_to 'Rangliste', rankings_tipp_group_show_path(group.tipp_group), class: "btn btn-info btn-sm active pull-right" %></td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>

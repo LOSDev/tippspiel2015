@@ -9,7 +9,7 @@ namespace :matches do
 end
 def update_matches
   (1..34).each do |n|
-    p "#{n}. Spieltag"
+    p "Daten des #{n}. Spieltags werden herunter geladen."
     url = "http://openligadb-json.heroku.com/api/matchdata_by_group_league_saison?group_order_id=#{n}&league_saison=2014&league_shortcut=bl1"
     open(url) do |f|
       f.base_uri
@@ -37,7 +37,6 @@ def update_matches
             db_match.home_goals = home_goals if home_goals != "-1"
             db_match.away_goals = away_goals if away_goals != "-1"
             db_match.save
-            p "updated #{home_team} vs. #{away_team}"
           else
             Match.create(home_team: home_team, away_team: away_team, match_time: mt, matchday: n, city: city, stadium: stadium)
           end

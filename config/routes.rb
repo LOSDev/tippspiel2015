@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     end
   end
   get 'rankings/overall/:id', to: 'rankings#overall', as: :rankings_overall_show
-  
+  get 'rankings/tipp_group/:id', to: 'rankings#tipp_group', as: :rankings_tipp_group_show
   get 'rankings/matchday/:id', to: 'rankings#matchday', as: :rankings_matchday_show
 
   get 'regeln', to: 'static_pages#rules', as: :rules

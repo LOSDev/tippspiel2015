@@ -6,4 +6,5 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :username
   scope :ordered, -> { order('points DESC') }
+  has_many :tipp_groups
 end

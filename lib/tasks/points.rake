@@ -25,16 +25,9 @@ namespace :points do
 
   desc "Ranking Users"
   task :rank => :users do
-    "Inserting Ranking into database"
-    last_points = nil
-    last_index = nil
+    p "Inserting Ranking into database"
+    
     User.all.ordered.each_with_index do |user, index|
-      if last_points == user.points
-        index = last_index
-      else
-        last_index = index
-        last_points = user.points
-      end
       user.rank = index + 1
       user.save
     end
@@ -42,7 +35,7 @@ namespace :points do
 
   desc "Calculating points per Matchday"
   task :matchday => :rank do
-    "Calculating points per Matchday"
+    p "Calculating points per Matchday"
     User.all.each do |user|
       (1..34).each do |n|
         points = Tipp.joins(:match).where(matches:{matchday: n }).where(user_id: user.id).sum(:points)
@@ -54,7 +47,7 @@ namespace :points do
   end
 
   desc "update matches and points"
-  task :update => ["matches:load", :users]
+  task :update => ["matches:load", :matchday]
 
   def calculate_points match, tipp
     return 3 if match.home_goals == tipp.home_goals and match.away_goals == tipp.away_goals

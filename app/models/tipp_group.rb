@@ -4,4 +4,7 @@ class TippGroup < ActiveRecord::Base
   has_many :users, through: :group_members
   validates_presence_of :user_id, :name, :password
   validates_uniqueness_of :name
+
+  scope :ordered, -> { order(:name) }
+
 end

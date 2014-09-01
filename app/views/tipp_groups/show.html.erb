@@ -3,25 +3,25 @@
     <% if flash[:notice] %>
       <p class="alert alert-info"><%= notice %></p>
     <% end %>
-    <p>
+    <h4>
       <strong>Gruppenname:</strong>
       <%= @tipp_group.name %>
-    </p>
-    <p>
-      <strong>Gruppenersteller:</strong>
+    </h4>
+    <h4>
+      <strong>Gründer der Gruppe:</strong>
       <%= @tipp_group.user.username %>
-    </p>
+    </h4>
 
   
     <p>
     <% if @isFounder %>
-      <p>
+      <h4>
         <strong>Gruppen-Passwort:</strong>
         <%= @tipp_group.password %>
-      </p>
+      </h4>
       <p>
         <%= link_to 'Gruppe bearbeiten', edit_tipp_group_path(@tipp_group), class:"btn btn-primary" %>
-        <%= link_to 'Gruppe löschen', @tipp_group, method: :delete, data: { confirm: 'Sind Sie sicher?' }, class:"btn btn-danger" %>
+        <%= link_to 'Gruppe löschen', @tipp_group, method: :delete, data: { confirm: 'Sind Sie sicher?' }, class:"btn btn-danger pull-right" %>
 
       </p>
     <% else %>

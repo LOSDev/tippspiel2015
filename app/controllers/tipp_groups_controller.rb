@@ -4,7 +4,9 @@ class TippGroupsController < ApplicationController
   # GET /tipp_groups
   # GET /tipp_groups.json
   def index
-    @tipp_groups = TippGroup.all
+    @tipp_groups = TippGroup.ordered
+    @founded_groups = current_user.tipp_groups
+    @member_groups = GroupMember.includes(:tipp_group).where(user_id: current_user.id)
   end
 
   # GET /tipp_groups/1

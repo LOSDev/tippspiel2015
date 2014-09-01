@@ -20,7 +20,7 @@ class TippsController < ApplicationController
 
   # GET /tipps/new
   def new
-    @tipp = Tipp.new
+    
   end
 
   # GET /tipps/1/edit
@@ -61,26 +61,13 @@ class TippsController < ApplicationController
   # PATCH/PUT /tipps/1
   # PATCH/PUT /tipps/1.json
   def update
-    @tipps = params[:tipps].permit(:home_goals, :away_goals, :user_id, :match_id, :points)
-    respond_to do |format|
-      if @tipp.update(tipp_params)
-        format.html { redirect_to @tipp, notice: 'Tipp was successfully updated.' }
-        format.json { render :show, status: :ok, location: @tipp }
-      else
-        format.html { render :edit }
-        format.json { render json: @tipp.errors, status: :unprocessable_entity }
-      end
-    end
+    
   end
 
   # DELETE /tipps/1
   # DELETE /tipps/1.json
   def destroy
-    @tipp.destroy
-    respond_to do |format|
-      format.html { redirect_to tipps_url, notice: 'Tipp was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    
   end
 
   private

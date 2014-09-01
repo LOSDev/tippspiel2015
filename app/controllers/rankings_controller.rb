@@ -16,4 +16,17 @@ class RankingsController < ApplicationController
     end
     @top100 = MatchdayPoint.includes(:user).where(matchday: @matchday).limit(100).ordered
   end
+
+  def tipp_group
+    tipp_group_id = params[:id].to_i
+    if tipp_group_id > 0
+      @tipp_group = TippGroup.find(tipp_group_id)
+      @users =  []
+      @users << @tipp_group.user
+      @users << @tipp_group.users
+      @users = @users.flatten.sort_by {|user| user.points}.reverse
+      
+    end
+    
+  end
 end
