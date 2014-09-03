@@ -15,8 +15,10 @@
     </thead>
     <tbody>
       <% @matches.each do |match| %>
-        <% tipp_index = @tipps.find_index {|item| item.match_id == match.id} || Tipp.new %>
-        <% tipp = @tipps[tipp_index] %>
+        <% tipp = Tipp.new %>
+        <% tipp_index = @tipps.find_index {|item| item.match_id == match.id} %>
+        <% tipp = @tipps[tipp_index] if tipp_index %>
+
         <%= fields_for "tipps[]", tipp, index: nil do |f| %>
           <tr>
             <%= f.hidden_field :match_id, :value => match.id %>

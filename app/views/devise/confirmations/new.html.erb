@@ -1,12 +1,17 @@
-<h2>Resend confirmation instructions</h2>
+<div class="col-md-8">
+  <div class="well">
+    <h4>Erneut Informationen schicken</h2>
+    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "form-inline", role:"form" }) do |f| %>
+      <%= devise_error_messages! %>
+      <div class="form-group">
+        <%= f.label :email %>:&nbsp
+        <%= f.email_field :email, autofocus: true, class: "form-control" %>
+      </div>
+      <br><br>
+      <div><%= f.submit "Informationen erneut verschicken", class:"btn btn-primary active" %></div>
+    <% end %>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+    <%= render "devise/shared/links" %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
-
-  <div><%= f.submit "Resend confirmation instructions" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  </div>
+</div>

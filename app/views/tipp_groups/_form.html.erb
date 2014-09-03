@@ -1,14 +1,11 @@
 <%= form_for(@tipp_group, html: {class: "", role: "form"}) do |f| %>
   <% if @tipp_group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@tipp_group.errors.count, "error") %> prohibited this tipp_group from being saved:</h2>
-
-      <ul>
+    <div class="alert alert-danger">
       <% @tipp_group.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <%= message %><br>
       <% end %>
-      </ul>
     </div>
+
   <% end %>
   <div class="form-group">
     <%= f.label :name, "Gruppenname" %><br>

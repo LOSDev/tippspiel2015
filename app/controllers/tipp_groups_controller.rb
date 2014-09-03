@@ -66,7 +66,7 @@ class TippGroupsController < ApplicationController
     if authorize
       @tipp_group.destroy 
       respond_to do |format|
-        format.html { redirect_to tipp_groups_url, notice: 'Tipp-Gruppe wurde erfolgreich zerstört.' }
+        format.html { redirect_to tipp_groups_url, notice: "Tipp-Gruppe \"#{@tipp_group.name}\" wurde gelöscht." }
         format.json { head :no_content }
       end
     else

@@ -6,5 +6,7 @@ class TippGroup < ActiveRecord::Base
   validates_uniqueness_of :name
 
   scope :ordered, -> { order(:name) }
+  validates :name, length: { in: 3..20 }
+  validates :password, length: { in: 6..20 }
 
 end

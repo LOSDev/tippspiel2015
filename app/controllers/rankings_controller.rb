@@ -24,7 +24,7 @@ class RankingsController < ApplicationController
       @users =  []
       @users << @tipp_group.user
       @users << @tipp_group.users
-      @users = @users.flatten.sort_by {|user| user.points}.reverse
+      @users = @users.flatten.sort_by {|user| user.rank}
       
     end
     
