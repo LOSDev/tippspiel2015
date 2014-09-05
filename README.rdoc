@@ -1,28 +1,18 @@
-== README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+== Bundesliga Tippspiel 2014/15
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+* Ruby 2.1
+
+* Bootstrap
+
+* Devise
+
+* Rails 4.1
+
+* rake points:update to calculate points for each user
+
+
+
+
+App lives at http://tippspiel2015.herokuapp.com
