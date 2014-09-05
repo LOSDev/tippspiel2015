@@ -1,5 +1,7 @@
 <div  class="col-md-8">
-  
+  <% flash.each do |key, value| %>
+    <%= content_tag :div, value.html_safe, class: "alert alert-warning", role: "alert" %>
+  <% end %>
   <div class="panel panel-primary">
     <div class="panel-heading">Tippspiel zur Bundesliga-Saison 2014/2015</div>
     <div class="panel-body">

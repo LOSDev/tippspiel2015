@@ -22,12 +22,12 @@
   <div class="form-group"><%= f.label :current_password, "Aktuelles Passwort" %> <i>(aktuelles Passwort eingeben um Änderungen durchzuführen)</i><br />
     <%= f.password_field :current_password, autocomplete: "off", class:"form-control" %></div>
 
-  <div><%= f.submit "Änderungen bestätigen", class:"btn btn-default" %></div>
+  <div><%= f.submit "Änderungen bestätigen", class:"btn btn-primary active" %></div>
 <% end %>
 
 <h3>Account löschen?</h3>
 
-<p><%= button_to "Konto löschen", registration_path(resource_name), data: { confirm: "Bestätigen Sie hiermit, dass Ihr Account endgültig gelöscht werden soll." }, method: :delete, class: "btn btn-danger" %></p>
+<p><%= button_to "Konto löschen", registration_path(resource_name), data: { confirm: "Bestätigen Sie hiermit, dass Ihr Account endgültig gelöscht werden soll." }, method: :delete, class: "btn btn-danger active" %></p>
 
 <%= link_to "Zurück", :back %>
 </div>

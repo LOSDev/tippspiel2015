@@ -3,28 +3,24 @@
     <%= content_tag :div, value.html_safe, class: "alert alert-warning", role: "alert" %>
   <% end %>
 
-  <div class="well">
-    <h4>Spieltag wählen:</h4>
-
-    <div class="btn-group btn-group-justified">
-      <% (1..17).each do |n| %>
-        <%= link_to n, edit_tipp_path(n), class: "btn btn-info btn-sm", type:"button", id: "matchday#{n}" %>
+  <div class="well">    
+    <ul class="pager">
+      <% if @matchday > 1 %>
+        <li class="previous"><%= link_to "&larr; Voriger Spieltag".html_safe, edit_tipp_path(@matchday - 1) %></li>
+      <% else %>
+        <li class="previous disabled"><a href="#">&larr; Voriger Spieltag</a></li>
       <% end %>
-    </div>
-    <div class="btn-group btn-group-justified">
-      <% (18..34).each do |n| %>
-        <%= link_to n, edit_tipp_path(n), class: "btn btn-primary btn-sm", type:"button" ,id: "matchday#{n}" %>
+      <span class="h4"><%= @matches.first.matchday %>. Spieltag</span>
+      <% if @matchday < 34 %>
+        <li class="next"><%= link_to "Nächster Spieltag &rarr;".html_safe, edit_tipp_path(@matchday + 1) %></li>
+      <% else %>
+        <li class="next disabled"><a href="#">Nächster Spieltag &rarr;</a></li>
       <% end %>
-    </div>
-    <br>
-    <div class="header"><h3>Tippen Sie den <%= @matches.first.matchday %>. Spieltag</h3></div>
-
+    </ul>
     <%= render 'form' %>
-
   </div>
 </div>
-<div class="col-md-4">
-  
+<div class="col-md-4">  
   <div class="panel panel-primary">
     <div class="panel-heading">Gesamtwertung</div>
     <table class="table">
@@ -47,7 +43,6 @@
 </div>
 
 <div class="col-md-4">
-  
   <div class="panel panel-primary">
     <div class="panel-heading"><%= @matchday %>. Spieltag <span class="pull-right">Top 10</span></div>
     <table class="table">

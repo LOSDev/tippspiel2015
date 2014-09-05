@@ -40,3 +40,12 @@ td .form-control, {
   width: 40px;
 }
 
+.pager li a{
+  background: #428bca;
+  color: #ffffff;
+}
+.pager li a:hover{
+  background: #ffffff;
+  color: #428bca;
+}
+
