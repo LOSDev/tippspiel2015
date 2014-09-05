@@ -99,7 +99,7 @@ class TippsController < ApplicationController
       firstmatch = lastmatch - 8
       @tipps = Tipp.where(user_id: current_user.id).where("match_id <= ? AND match_id >= ?", lastmatch, firstmatch).order(:match_id)
       @user_id = current_user.id
-      @matches = Match.where(["matchday = ?", params[:id]])
+      @matches = Match.where(["matchday = ?", params[:id]]).order(:match_time)
       @top10 = User.limit(10).ordered
       @matchday_top = MatchdayPoint.includes(:user).where(matchday: @matchday).limit(10).ordered
     end
