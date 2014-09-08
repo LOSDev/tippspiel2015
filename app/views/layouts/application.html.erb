@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="container ">
+<div class="container">
   <div class="col-md-12">
     <nav class="navbar navbar-default" role="navigation">
       <div class="container-fluid">
@@ -38,7 +38,7 @@
                     <span class="badge alert-info">
                       Platz: <%= current_user.rank %>
                       Punkte: <%= current_user.points %>
-                    </span>&nbsp
+                    </span><%= "&nbsp;".html_safe %>
                     <span class="glyphicon glyphicon-user"> </span> 
                     <%= current_user.username %><span class="caret"></span>
                     
@@ -65,7 +65,7 @@
   </div>
   <%= yield %>
 
-
+</div>
 
 </body>
 </html>

@@ -4,14 +4,16 @@
   <%= hidden_field_tag "matchday", @matchday, { :id => "matchday" } %>
   <table class="table table-striped">
     <thead>
-        <th align="left" >Datum</th>
-        <th align="right"></th>
+      <tr>
+        <th class="align-left" >Datum</th>
+        <th class="align-right"></th>
 
-        <th style="text-align:center" colspan="3">Tipp</th>
+        <th class="align-center" colspan="3">Tipp</th>
         
-        <th align="left"></th>
-        <th style="text-align:center">Ergebnis</th>
+        <th class="align-left"></th>
+        <th class="align-center">Ergebnis</th>
         <th>Punkte</th>
+      </tr>
     </thead>
     <tbody>
       <% @matches.each do |match| %>
@@ -19,38 +21,40 @@
         <% tipp_index = @tipps.find_index {|item| item.match_id == match.id} %>
         <% tipp = @tipps[tipp_index] if tipp_index %>
 
-        <%= fields_for "tipps[]", tipp, index: nil do |f| %>
+        <%= fields_for "tipps[#{tipp.id}]", tipp, index: nil do |f| %>
           <tr>
             <%= f.hidden_field :match_id, :value => match.id %>
-            <td width="20%" align="left" >
+            <td class="align-left cell-sm" >
               <% day = match.match_time.strftime("%w")%>
               <%= @days[day.to_i] + ". " %>
               <%= match.match_time.in_time_zone("CET").strftime("%d.%m, %H:%M")  %>
             </td>
-            <td width="20%" align="right"><%= match.home_team %></td>
+            <td class="align-right cell-md"><%= match.home_team %></td>
 
             <% if DateTime.now < match.match_time %>
-              <td width="5%" align="right"> 
-                <%= f.text_field(:home_goals, class: "form-control input-sm", :cols => "2" ,:pattern => '[0-9]{1,2}') %>
+              <td class="align-right cell-xs"> 
+                <%= f.text_field(:home_goals, class: "form-control input-sm",:pattern => '[0-9]{1,2}') %>
               </td>
             <% else %>
-              <td width="5%" align="right"> <%= f.text_field(:home_goals, class: "form-control input-sm", id:"disabledInput", :disabled => true) %></td>
+              <td class="align-right cell-xs"> <%= f.text_field(:home_goals, class: "form-control input-sm", id:"disabledInput", :disabled => true) %></td>
             <% end %>
 
-            <td align="center" width="1%">:</td>
+            <td class="align-center cell-xs">:</td>
             <% if DateTime.now < match.match_time %>
-              <td width="5%" align="left"> <%= f.text_field(:away_goals, class: "form-control input-sm") %></td>
+              <td class="align-left cell-xs"> 
+                <%= f.text_field(:away_goals, class: "form-control input-sm",:pattern => '[0-9]{1,2}') %>
+              </td>
             <% else %>
-              <td width="5%" align="left"> <%= f.text_field(:away_goals, class: "form-control input-sm", id:"disabledInput", :disabled => true) %></td>
+              <td class="align-left cell-xs"> <%= f.text_field(:away_goals, class: "form-control input-sm", id:"disabledInput", :disabled => true) %></td>
             <% end %> 
-            <td width="20%" align="left" ><%= match.away_team %></td>
+            <td class="align-left cell-md" ><%= match.away_team %></td>
             
             <% if match.home_goals %>
-              <td width="10%" align="center"><%= match.home_goals %> - <%= match.away_goals %></td>
+              <td class="align-center cell-sm"><%= match.home_goals %> - <%= match.away_goals %></td>
             <% else %>
-              <td align="center">-</td>
+              <td class="align-center cell-xs">-</td>
             <% end %>
-            <td width="5%" align="center"><div class="label label-default"><%= tipp.points  %></div></td>
+            <td class="align-center cell-xs"><div class="label label-default"><%= tipp.points  %></div></td>
           </tr>
         <% end %>
       <% end %>
@@ -58,8 +62,8 @@
         <td colspan="3">
           <%= submit_tag "Tipps abgeben" , class: "btn btn-primary btn-lg btn-block", role: "button" if DateTime.now < @matches.last.match_time %>
         </td>
-        <td colspan="4" align="right">Spieltag-Punktzahl:</td>
-        <td align="center"><div class="label label-default"><%= @tipps.inject(0){|sum,e| sum += e.points if e.points} %></div></td>
+        <td colspan="4" class="align-right">Spieltag-Punktzahl:</td>
+        <td class="align-center"><div class="label label-default"><%= @tipps.inject(0){|sum,e| sum += e.points if e.points} %></div></td>
       </tr>
     
     </tbody>

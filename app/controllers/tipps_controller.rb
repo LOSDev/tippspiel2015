@@ -35,7 +35,8 @@ class TippsController < ApplicationController
     if current_user
       @formerrors = []
       tipps = params[:tipps]
-      tipps = tipps.values if tipps.is_a?(Hash)
+      tipps = tipps.values.flatten if tipps.is_a?(Hash)
+      p tipps.last
       matchday = Match.find(tipps.last["match_id"]).matchday
       tipps.each do |tipp|
         match_id = tipp["match_id"]

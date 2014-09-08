@@ -16,10 +16,12 @@
         <div class="panel-heading">Tipp-Gruppe: <%= @tipp_group.name %></div>
         <table class="table table-striped">
           <thead>
-            <th>Platz</th>
-            <th>Name</th>
-            <th>Gesamtrang</th>
-            <th>Punkte</th>
+            <tr>
+              <th>Platz</th>
+              <th>Name</th>
+              <th>Gesamtrang</th>
+              <th>Punkte</th>
+            </tr>
           </thead>
           <tbody>
             <% @users.each_with_index do |user, index| %>

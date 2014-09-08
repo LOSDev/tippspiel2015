@@ -6,12 +6,12 @@
 
     <div class="btn-group btn-group-justified">
       <% (1..17).each do |n| %>
-        <%= link_to n, rankings_matchday_show_path(n), class: "btn btn-info btn-sm", type:"button", id: "matchday#{n}" %>
+        <%= link_to n, rankings_matchday_show_path(n), class: "btn btn-info btn-sm", id: "matchday#{n}" %>
       <% end %>
     </div>
     <div class="btn-group btn-group-justified">
       <% (18..34).each do |n| %>
-        <%= link_to n, rankings_matchday_show_path(n), class: "btn btn-primary btn-sm", type:"button" ,id: "matchday#{n}" %>
+        <%= link_to n, rankings_matchday_show_path(n), class: "btn btn-primary btn-sm",id: "matchday#{n}" %>
       <% end %>
     </div>
     <br>
@@ -21,9 +21,11 @@
 
       <table class="table table-striped">
         <thead>
-          <th>Platz</th>
-          <th>Name</th>
-          <th>Punkte</th>
+          <tr>
+            <th>Platz</th>
+            <th>Name</th>
+            <th>Punkte</th>
+          </tr>
         </thead>
         <tbody>
           <% @top100.each_with_index do |tipp, index| %>
