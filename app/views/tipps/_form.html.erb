@@ -21,7 +21,7 @@
         <% tipp_index = @tipps.find_index {|item| item.match_id == match.id} %>
         <% tipp = @tipps[tipp_index] if tipp_index %>
 
-        <%= fields_for "tipps[#{tipp.id}]", tipp, index: nil do |f| %>
+        <%= fields_for "tipps[]", tipp, index: nil do |f| %>
           <tr>
             <%= f.hidden_field :match_id, :value => match.id %>
             <td class="align-left cell-sm" >
