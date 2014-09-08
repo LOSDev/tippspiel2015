@@ -50,13 +50,11 @@ namespace :points do
 
     p "Calculating points per Matchday"
     matchday = HelperFunctions::determine_matchday
-    p "#{matchday} Spieltage"
     User.all.each do |user|
       (1..matchday).each do |n|
         points = Tipp.joins(:match).where(matches:{matchday: n }).where(user_id: user.id).sum(:points)
-        p "#{points} Punkte."
         entry = MatchdayPoint.find_or_create_by(matchday: n, user_id: user.id)
-        unless entry.id
+        unless entry.points
           entry.points = points
           entry.save
         end
