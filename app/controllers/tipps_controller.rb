@@ -84,7 +84,7 @@ class TippsController < ApplicationController
     end
 
     def create_ul 
-      return if @formerrors.length == 0
+      return "Ihre Tipps wurden erfolgreich übermittelt." if @formerrors.length == 0
       result = "<ul>"
       @formerrors.flatten().uniq.each do |msg|
         result += "<li>"
