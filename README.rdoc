@@ -10,7 +10,11 @@
 
 * Rails 4.1
 
-* rake points:update to calculate points for each user
+* rake matches:download to download and update match data
+
+* rake points:calculate to calculate points for each tipp and each user and rank users
+
+* rake points:update to do both of the above
 
 
 

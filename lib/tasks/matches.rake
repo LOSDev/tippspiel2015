@@ -4,7 +4,7 @@ require 'open-uri'
 namespace :matches do
 
   desc "load matches data"
-  task :load => :environment do
+  task :download => :environment do
     start_time = Time.now
     include HelperFunctions
     p "Downloading and Updating Matches"

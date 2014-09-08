@@ -44,7 +44,7 @@ namespace :points do
   end
 
   desc "Calculating points per Matchday"
-  task :matchday => :rank do
+  task :calculate => :rank do
     start_time = Time.now
     include HelperFunctions
 
@@ -65,7 +65,7 @@ namespace :points do
   end
 
   desc "update matches and points"
-  task :update => ["matches:load", :matchday]
+  task :update => ["matches:download", :calculate]
 
   def calculate_points match, tipp
     return 3 if match.home_goals == tipp.home_goals and match.away_goals == tipp.away_goals
