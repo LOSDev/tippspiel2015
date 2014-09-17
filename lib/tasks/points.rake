@@ -54,10 +54,8 @@ namespace :points do
       (1..matchday).each do |n|
         points = Tipp.joins(:match).where(matches:{matchday: n }).where(user_id: user.id).sum(:points)
         entry = MatchdayPoint.find_or_create_by(matchday: n, user_id: user.id)
-        unless entry.points
-          entry.points = points
-          entry.save
-        end
+        entry.points = points
+        entry.save
       end
     end
     end_time = Time.now
